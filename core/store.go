@@ -10,7 +10,8 @@ type TokenStore interface {
 	// Get returns the RefreshTokenData associated with the given refresh token string.
 	Get(string) (*RefreshTokenData, error)
 	// Set stores the RefreshTokenData with the given refresh token string as key.
-	Set(string, *RefreshTokenData)
+	// Returns an error if the storage operation fails.
+	Set(string, *RefreshTokenData) error
 	// Remove deletes the RefreshTokenData associated with the given refresh token string.
 	Remove(string) error
 	// Cleanup removes expired refresh tokens from storage.
