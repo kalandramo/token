@@ -43,11 +43,12 @@ func (s *InMemoryRefreshTokenStore) Get(token string) (*core.RefreshTokenData, e
 }
 
 // Set stores the RefreshTokenData with the given refresh token as key.
-func (s *InMemoryRefreshTokenStore) Set(token string, data *core.RefreshTokenData) {
+func (s *InMemoryRefreshTokenStore) Set(token string, data *core.RefreshTokenData) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
 	s.tokens[token] = data
+	return nil
 }
 
 // Remove deletes the RefreshTokenData associated with the given refresh token.
